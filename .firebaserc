@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "ioled-dev-262215"
+  },
+  "targets": {
+    "ioled-dev-262215": {
+      "hosting": {
+        "testing": [
+          "ioled-dashboard"
+        ],
+        "production": [
+          "ioled-dev-262215"
+        ]
+      }
+    }
+  }
+}
