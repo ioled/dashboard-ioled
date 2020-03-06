@@ -5,7 +5,6 @@ import { URL, httpConfig } from "./config.js";
 export const getDevices = async () => {
   const res = await axios.get(`${URL}/user/allDevices`, httpConfig);
   const { devices } = res.data;
-  console.log("DEVICES", devices);
   return devices;
 };
 
@@ -39,8 +38,6 @@ export const setDeviceInfo = async id => {
   const { deviceConfig } = res2.data;
 
   let config = {};
-
-  console.log(deviceConfig);
 
   if (deviceConfig !== undefined && !deviceConfig.err && deviceConfig.board) {
     config = {

@@ -22,6 +22,7 @@ import {
 } from "../../functions/Details";
 
 import { getUserInfo } from "../../functions/Details";
+import { capitalize } from "functions/functions";
 
 class Details extends React.Component {
   constructor(props) {
@@ -41,9 +42,9 @@ class Details extends React.Component {
         hum: {}
       },
       user: {
-        fullName: "",
+        name: "",
         email: "",
-        profilePic: ""
+        photo: ""
       }
     };
   }
@@ -70,12 +71,10 @@ class Details extends React.Component {
           <div className="header bg-gradient-lighter pb-3 pt-5 pt-md-6">
             <Container fluid>
               <span className="avatar avatar-xl rounded-circle">
-                <img alt="" src={this.state.user.profilePic} />
+                <img alt="" src={this.state.user.photo} />
               </span>
-              <h1>{`${this.state.user.fullName}${
-                this.state.user.fullName[
-                  this.state.user.fullName.length - 1
-                ] !== "s"
+              <h1>{`${this.state.user.name}${
+                this.state.user.name[this.state.user.name.length - 1] !== "s"
                   ? "'s"
                   : "'"
               } device information`}</h1>
@@ -93,11 +92,18 @@ class Details extends React.Component {
     getDayGraph(this.state.deviceName);
     (async () => {
       this.setState({ user: await getUserInfo(this.state.deviceName) });
+      this.setState({
+        user: {
+          name: capitalize(this.state.user.name),
+          photo: this.state.user.photo,
+          email: this.state.user.email
+        }
+      });
       if (this.state.user === null) {
         this.setState({
           user: {
-            profilePic: "",
-            fullName: "",
+            photo: "",
+            name: "",
             email: ""
           }
         });

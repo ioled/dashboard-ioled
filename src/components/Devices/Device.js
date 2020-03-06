@@ -9,13 +9,17 @@ import {
   setDeviceStatusColour
 } from "../../functions/Devices";
 
+import { capitalize } from "../../functions/functions";
+
 class Device extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       deviceName: this.props.info.deviceID,
       owner:
-        this.props.info.user !== null ? this.props.info.user.fullName : "-",
+        this.props.info.user !== null
+          ? capitalize(this.props.info.user.name)
+          : "-",
       info: {
         state: {
           hum: "",
